@@ -233,24 +233,9 @@ That is how we approach this framework at BlackRoad.
 
 ## References
 
-Baddeley, A. D., & Hitch, G. (1974). Working memory. In G. H. Bower (Ed.), *The psychology of learning and motivation* (Vol. 8, pp. 47–89). Academic Press.
-
-Chaiken, S. (1980). Heuristic versus systematic information processing and the use of source versus message cues in persuasion. *Journal of Personality and Social Psychology*, 39(5), 752–766.
-
-Cialdini, R. B. (2001). *Influence: Science and practice* (4th ed.). Allyn & Bacon.
-
-Eagly, A. H., & Chaiken, S. (1993). *The psychology of attitudes*. Harcourt Brace Jovanovich.
-
 Fennis, B. M., & Stroebe, W. (2016). *The psychology of advertising* (2nd ed.). Routledge.
 
-Kahneman, D., & Tversky, A. (1979). Prospect theory: An analysis of decision under risk. *Econometrica*, 47(2), 263–292.
-
 Katz, D. (1960). The functional approach to the study of attitudes. *Public Opinion Quarterly*, 24(2), 163–204.
-
-Petty, R. E., & Cacioppo, J. T. (1986). *Communication and persuasion: Central and peripheral routes to attitude change*. Springer-Verlag.
-
-Segijn, C. M., Voorveld, H. A. M., & Smit, E. G. (2017). How related multiscreening could positively affect advertising outcomes. *Journal of Advertising*, 46(4), 455–472.
-
 ---
 
 *Built by BlackRoad. Powered by science.*
