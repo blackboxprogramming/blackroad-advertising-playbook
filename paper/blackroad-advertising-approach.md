@@ -97,7 +97,7 @@ We distinguish between **desired misunderstanding** — strategic inference tech
 
 Our ethical standard is that we do not mislead. We do, however, use the full range of legitimate comprehension tools: pragmatic inference (framing that implies a conclusion without stating it), juxtaposition (placing claims adjacent to create implied relationships), and strategic omission (specifying comparisons only when they favor the brand). We apply these tools consciously and review them for unintended interpretations before release.
 
-The **truth effect** and **sleeper effect** remind us that repetition itself shapes perceived truth. Our media scheduling, therefore, is not simply about reach and frequency — it is about building the implicit credibility of our claims through consistent exposure over time.
+The **truth effect** reminds us that people often accept information by default, even without full understanding, because rejecting a claim requires more cognitive effort than accepting it. The **sleeper effect** shows that repeated exposure and familiarity can increase the perceived truth of our messages over time. Our media scheduling, therefore, is not simply about reach and frequency — it is about building the implicit credibility of our claims through consistent exposure over time.
 
 ### 3.4 Elaboration: Earn the Thought
 
