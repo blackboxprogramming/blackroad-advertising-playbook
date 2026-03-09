@@ -1,6 +1,6 @@
 # How BlackRoad Approaches the Advertising Psychology Framework
 
-**Alexa Mundson**
+**Alexa Amundson**
 BlackRoad
 
 ---

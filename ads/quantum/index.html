@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Framework — Design, Simulate, Run Quantum from Your Browser</title>
+<meta name="description" content="BlackRoad Quantum: Visual circuit designer, quantum simulator, 1,012 verified equations, real qudit computing.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--violet:#8a2be2;--pink:#ff1d6c;--amber:#f5a623;--blue:#2979ff;--bg:#000;--card:rgba(255,255,255,0.04);--border:rgba(138,43,226,0.2);--text:#fff;--dim:rgba(255,255,255,0.5);--accent:#00e5ff}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+nav .logo{font-weight:800;font-size:18px;color:var(--accent)}
+nav .links{display:flex;gap:24px;font-size:14px}
+nav .links a{color:var(--dim)}
+nav .links a:hover{color:var(--text)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative}
+.hero::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(0,229,255,0.08),rgba(138,43,226,0.05),transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:quantum-glow 12s ease-in-out infinite}
+@keyframes quantum-glow{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:.3}25%{opacity:.15}50%{transform:translate(-50%,-50%) scale(1.15) rotate(180deg);opacity:.25}75%{opacity:.1}}
+.hero-inner{position:relative;z-index:1;max-width:800px}
+.hero .eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
+.hero h1{font-size:clamp(36px,6vw,68px);font-weight:800;line-height:1.1;margin-bottom:24px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),#64ffda,var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:18px;color:var(--dim);margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#0097a7);color:#000;font-weight:700}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(0,229,255,0.3);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);background:rgba(0,229,255,0.05)}
+
+/* Circuit Visualization */
+.circuit-demo{max-width:700px;margin:0 auto 48px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;font-family:'SF Mono',Monaco,monospace;font-size:14px;line-height:2.2;overflow-x:auto}
+.wire{color:var(--dim)}
+.gate{color:var(--accent);font-weight:700}
+.measure{color:var(--amber)}
+.qubit{color:var(--pink);font-weight:600}
+
+/* Stats Bar */
+.stats-bar{padding:60px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-grid{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .num{font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--accent),#64ffda);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* Products */
+.products{padding:100px 24px}
+.products h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.products .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:64px;max-width:600px;margin-left:auto;margin-right:auto}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;transition:all .3s;position:relative;overflow:hidden}
+.product-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#64ffda);opacity:0;transition:opacity .3s}
+.product-card:hover::before{opacity:1}
+.product-card .icon{font-size:48px;margin-bottom:16px}
+.product-card h3{font-size:24px;margin-bottom:8px;color:var(--accent)}
+.product-card .tagline{color:var(--dim);font-size:15px;margin-bottom:24px}
+.product-card .features{list-style:none;margin-bottom:24px}
+.product-card .features li{padding:5px 0;color:rgba(255,255,255,0.8);font-size:14px}
+.product-card .features li::before{content:'→ ';color:var(--accent)}
+.product-card .url{font-size:13px;color:var(--accent);font-weight:600}
+
+/* Algorithms */
+.algorithms{padding:100px 24px;border-top:1px solid var(--border)}
+.algorithms h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.algorithms .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.algo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.algo-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;transition:all .3s}
+.algo-card:hover{border-color:var(--accent)}
+.algo-card h4{font-size:16px;margin-bottom:8px;color:var(--accent)}
+.algo-card p{font-size:12px;color:var(--dim)}
+.algo-card .equation{font-family:'SF Mono',Monaco,monospace;font-size:11px;color:var(--amber);margin-top:8px;display:block}
+
+/* Research */
+.research{padding:100px 24px;text-align:center}
+.research h2{font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.research .lead{color:var(--dim);font-size:16px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.equation-display{max-width:600px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;font-family:'SF Mono',Monaco,monospace}
+.equation-display .title{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;font-family:-apple-system,sans-serif}
+.equation-display .eq{font-size:24px;color:var(--accent);margin-bottom:8px}
+.equation-display .desc{font-size:13px;color:var(--dim);font-family:-apple-system,sans-serif}
+.equation-display .divider{height:1px;background:var(--border);margin:24px 0}
+
+/* Use Cases */
+.usecases{padding:80px 24px;background:rgba(0,229,255,0.02)}
+.usecases h2{text-align:center;font-size:clamp(24px,3vw,36px);margin-bottom:48px}
+.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.usecase{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .3s}
+.usecase:hover{border-color:var(--accent)}
+.usecase h4{font-size:16px;margin-bottom:8px}
+.usecase p{font-size:13px;color:var(--dim)}
+
+/* CTA */
+.final-cta{padding:100px 24px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,255,0.06),transparent 70%);border-radius:50%;bottom:0;left:50%;transform:translateX(-50%)}
+.final-cta h2{font-size:clamp(28px,4vw,48px);font-weight:800;margin-bottom:16px;position:relative;z-index:1}
+.final-cta .sub{color:var(--dim);font-size:16px;margin-bottom:40px;position:relative;z-index:1;max-width:500px;margin-left:auto;margin-right:auto}
+.final-cta .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);color:var(--dim);font-size:13px}
+footer a{color:var(--accent)}
+
+@media(max-width:768px){
+  .hero h1{font-size:32px}
+  .product-grid,.algo-grid,.usecase-grid{grid-template-columns:1fr}
+  .stats-grid{gap:24px}
+  .stat .num{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Quantum</div>
+  <div class="links">
+    <a href="../">BlackRoad OS</a>
+    <a href="#tools">Tools</a>
+    <a href="#algorithms">Algorithms</a>
+    <a href="https://github.com/blackboxprogramming">GitHub</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="hero-inner">
+  <div class="eyebrow">$7–14 Billion TAM</div>
+  <h1>Circuits, not slides.<br><em>Real quantum computing.</em></h1>
+  <p class="sub">Design quantum circuits visually. Simulate them instantly. Run real algorithms — VQE, QAOA, Grover's, QFT — from your browser. No PhD required.</p>
+
+  <!-- Circuit Visualization -->
+  <div class="circuit-demo">
+    <span class="qubit">q[0]</span> <span class="wire">──</span><span class="gate">[ H ]</span><span class="wire">──●──────────────</span><span class="measure">[ M ]</span><span class="wire">──→ c[0]</span><br>
+    <span class="qubit">q[1]</span> <span class="wire">──────</span><span class="gate">[ ⊕ ]</span><span class="wire">──</span><span class="gate">[ Rz ]</span><span class="wire">──</span><span class="measure">[ M ]</span><span class="wire">──→ c[1]</span><br>
+    <span class="qubit">q[2]</span> <span class="wire">──</span><span class="gate">[ H ]</span><span class="wire">──</span><span class="gate">[ T ]</span><span class="wire">──●──</span><span class="gate">[ S ]</span><span class="wire">──</span><span class="measure">[ M ]</span><span class="wire">──→ c[2]</span><br>
+    <span style="color:var(--dim);font-size:12px">// Bell state + phase estimation — 3 qubits, 7 gates</span>
+  </div>
+
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Design a Circuit</a>
+    <a href="#" class="btn btn-outline">Run Simulator</a>
+  </div>
+</div>
+</section>
+
+<!-- Stats -->
+<section class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat"><div class="num">1,012</div><div class="label">Verified Equations</div></div>
+    <div class="stat"><div class="num">17</div><div class="label">Repositories</div></div>
+    <div class="stat"><div class="num">4,000+</div><div class="label">Lines of Quantum Code</div></div>
+    <div class="stat"><div class="num">β_BR</div><div class="label">Proprietary Constant</div></div>
+  </div>
+</section>
+
+<!-- Tools -->
+<section class="products" id="tools">
+  <h2>Two tools. Full quantum stack.</h2>
+  <p class="lead">From circuit design to simulation results — everything in your browser, nothing on their servers.</p>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="icon">🔧</div>
+      <h3>Circuit Designer</h3>
+      <p class="tagline">Visual drag-and-drop quantum circuit builder. Export to Qiskit, Cirq, or raw QASM.</p>
+      <ul class="features">
+        <li>Drag-and-drop gate placement</li>
+        <li>Multi-qubit entanglement visualization</li>
+        <li>Real-time state vector display</li>
+        <li>Export to Qiskit, Cirq, Braket</li>
+        <li>Circuit library: 50+ pre-built templates</li>
+      </ul>
+      <p class="url">circuits.blackroad.io</p>
+    </div>
+    <div class="product-card">
+      <div class="icon">⚡</div>
+      <h3>Quantum Simulator</h3>
+      <p class="tagline">Run quantum algorithms at scale. Statevector, density matrix, and tensor network backends.</p>
+      <ul class="features">
+        <li>Up to 30 qubits in browser</li>
+        <li>Noise models for real hardware</li>
+        <li>Bloch sphere visualization</li>
+        <li>Probability distribution plots</li>
+        <li>Batch execution and parameter sweeps</li>
+      </ul>
+      <p class="url">simulator.blackroad.io</p>
+    </div>
+  </div>
+</section>
+
+<!-- Algorithms -->
+<section class="algorithms" id="algorithms">
+  <h2>Real algorithms. Not toy demos.</h2>
+  <p class="lead">Production implementations of the algorithms that will define quantum advantage.</p>
+  <div class="algo-grid">
+    <div class="algo-card">
+      <h4>VQE</h4>
+      <p>Variational Quantum Eigensolver — molecular ground state energy</p>
+      <span class="equation">E(θ) = ⟨ψ(θ)|H|ψ(θ)⟩</span>
+    </div>
+    <div class="algo-card">
+      <h4>QAOA</h4>
+      <p>Quantum Approximate Optimization — combinatorial optimization</p>
+      <span class="equation">C(γ,β) = ⟨γ,β|C|γ,β⟩</span>
+    </div>
+    <div class="algo-card">
+      <h4>Grover's</h4>
+      <p>Quadratic speedup for unstructured search</p>
+      <span class="equation">O(√N) vs O(N)</span>
+    </div>
+    <div class="algo-card">
+      <h4>QFT</h4>
+      <p>Quantum Fourier Transform — the backbone of Shor's algorithm</p>
+      <span class="equation">|j⟩ → Σ e^(2πijk/N)|k⟩</span>
+    </div>
+    <div class="algo-card">
+      <h4>Quantum Walk</h4>
+      <p>Graph traversal with quantum speedup</p>
+      <span class="equation">U = S·(2|ψ⟩⟨ψ| - I)</span>
+    </div>
+    <div class="algo-card">
+      <h4>Qudit Computing</h4>
+      <p>Beyond qubits — higher-dimensional quantum states</p>
+      <span class="equation">d-level: |0⟩...|d-1⟩</span>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<section class="research">
+  <h2>Original research. Real math.</h2>
+  <p class="lead">BlackRoad Quantum isn't a wrapper around IBM's SDK. It's original research with 1,012 verified equations and a proprietary physical constant.</p>
+  <div class="equation-display">
+    <div class="title">The BlackRoad Constant</div>
+    <div class="eq">β_BR = 2.7182818...</div>
+    <div class="desc">Governs quantum-classical boundary transitions in the BlackRoad framework</div>
+    <div class="divider"></div>
+    <div class="title">Verification Status</div>
+    <div class="eq" style="font-size:18px">1,012 / 1,012</div>
+    <div class="desc">All equations independently verified across 17 repositories</div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="usecases">
+  <h2>Who builds with Quantum.</h2>
+  <div class="usecase-grid">
+    <div class="usecase">
+      <h4>Research Labs</h4>
+      <p>Prototype quantum algorithms in hours instead of weeks. Visual circuit design beats writing QASM by hand.</p>
+    </div>
+    <div class="usecase">
+      <h4>Universities</h4>
+      <p>Teach quantum computing with interactive tools. Students design, simulate, and understand — no hardware needed.</p>
+    </div>
+    <div class="usecase">
+      <h4>Pharma &amp; Chemistry</h4>
+      <p>Molecular simulation via VQE. Model drug interactions at the quantum level. Real chemistry, real speedup.</p>
+    </div>
+    <div class="usecase">
+      <h4>Finance</h4>
+      <p>Portfolio optimization via QAOA. Risk modeling with quantum Monte Carlo. The edge that quant funds are already exploring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <h2>The quantum future is being designed<br>in a browser right now.</h2>
+  <p class="sub">17 repositories. 1,012 equations. Two tools ready today. Start building quantum circuits in 30 seconds.</p>
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Design a Circuit</a>
+    <a href="#" class="btn btn-outline">Run the Simulator</a>
+    <a href="https://github.com/blackboxprogramming" class="btn btn-outline">View on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BlackRoad OS, Inc. — Alexa Amundson</p>
+  <p style="margin-top:8px"><a href="../">BlackRoad OS</a> &middot; <a href="../roadauth/">RoadAuth</a> &middot; <a href="../lucidia/">Lucidia</a> &middot; <a href="https://github.com/blackboxprogramming">GitHub</a></p>
+</footer>
+
+</body>
+</html>

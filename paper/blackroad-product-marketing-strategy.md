@@ -1,6 +1,6 @@
 # BlackRoad OS Product Marketing Strategy: Applying the Psychology of Advertising to a $500B Opportunity
 
-**Alexa Mundson**
+**Alexa Amundson**
 BlackRoad OS, Inc.
 
 ---

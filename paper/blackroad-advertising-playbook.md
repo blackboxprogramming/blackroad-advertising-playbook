@@ -1,6 +1,6 @@
 # The BlackRoad Advertising Playbook: A Psychology-Driven Framework for Strategic Communication
 
-**Alexa Mundson**
+**Alexa Amundson**
 BlackRoad
 
 ---

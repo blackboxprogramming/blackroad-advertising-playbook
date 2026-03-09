@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucidia — The AI That Remembers You</title>
+<meta name="description" content="Lucidia: Universal memory. Multi-AI orchestration. 108 local models. Personal companion. Enterprise orchestrator. Living world.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--violet:#8a2be2;--pink:#ff1d6c;--amber:#f5a623;--blue:#2979ff;--bg:#000;--card:rgba(255,255,255,0.04);--border:rgba(138,43,226,0.2);--text:#fff;--dim:rgba(255,255,255,0.5);--accent:#da70d6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+nav .logo{font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--violet),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav .links{display:flex;gap:24px;font-size:14px}
+nav .links a{color:var(--dim)}
+nav .links a:hover{color:var(--text)}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative}
+.hero::before{content:'';position:absolute;width:900px;height:900px;background:radial-gradient(circle,rgba(218,112,214,0.1),rgba(138,43,226,0.05),transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glow 10s ease-in-out infinite}
+@keyframes glow{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.2);opacity:.15}}
+.hero-inner{position:relative;z-index:1;max-width:800px}
+.hero .eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
+.hero h1{font-size:clamp(40px,7vw,72px);font-weight:800;line-height:1.1;margin-bottom:24px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--violet),var(--accent),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:18px;color:var(--dim);margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* Chat Demo */
+.chat-demo{max-width:500px;margin:0 auto 48px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:left}
+.chat-msg{margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+.chat-msg .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.chat-msg.user .avatar{background:rgba(255,255,255,0.1)}
+.chat-msg.ai .avatar{background:linear-gradient(135deg,var(--violet),var(--accent))}
+.chat-msg .text{font-size:14px;color:rgba(255,255,255,0.85);line-height:1.5}
+.chat-msg .text .memory{color:var(--amber);font-size:12px;display:block;margin-top:6px;font-style:italic}
+.chat-input{display:flex;gap:8px;border-top:1px solid var(--border);padding-top:16px;margin-top:8px}
+.chat-input input{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;outline:none}
+.chat-input input:focus{border-color:var(--accent)}
+.chat-input button{background:linear-gradient(135deg,var(--violet),var(--accent));border:none;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:600;font-size:14px}
+
+.hero .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--violet),var(--accent));color:#fff}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(138,43,226,0.4);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);background:rgba(218,112,214,0.1)}
+
+/* Three Modes */
+.modes{padding:100px 24px}
+.modes h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.modes .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:64px;max-width:600px;margin-left:auto;margin-right:auto}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.mode-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;transition:all .3s;position:relative;overflow:hidden}
+.mode-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.mode-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+.mode-card:hover::before{opacity:1}
+.mode-card:nth-child(1)::before{background:linear-gradient(90deg,var(--accent),var(--violet))}
+.mode-card:nth-child(2)::before{background:linear-gradient(90deg,var(--blue),var(--accent))}
+.mode-card:nth-child(3)::before{background:linear-gradient(90deg,var(--pink),var(--amber))}
+.mode-card .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);border:1px solid var(--border);padding:4px 12px;border-radius:20px;margin-bottom:16px}
+.mode-card h3{font-size:24px;margin-bottom:8px}
+.mode-card .tagline{color:var(--dim);font-size:15px;margin-bottom:24px}
+.mode-card .features{list-style:none;margin-bottom:24px}
+.mode-card .features li{padding:6px 0;color:rgba(255,255,255,0.8);font-size:14px}
+.mode-card .features li::before{content:'→ ';color:var(--accent)}
+.mode-card .tam{font-size:13px;color:var(--amber);font-weight:600}
+
+/* Memory Layer */
+.memory{padding:100px 24px;border-top:1px solid var(--border);text-align:center}
+.memory h2{font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.memory .lead{color:var(--dim);font-size:16px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.memory-flow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.flow-step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;text-align:center;min-width:140px}
+.flow-step .icon{font-size:28px;margin-bottom:8px}
+.flow-step .label{font-size:13px;font-weight:600}
+.flow-step .desc{font-size:11px;color:var(--dim)}
+.flow-arrow{color:var(--accent);font-size:24px}
+
+/* Sovereign Strip */
+.sovereign{padding:80px 24px;background:rgba(138,43,226,0.03)}
+.sovereign h2{text-align:center;font-size:clamp(24px,3vw,36px);margin-bottom:16px}
+.sovereign .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:48px}
+.sovereign-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.sovereign-item{text-align:center;padding:24px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px}
+.sovereign-item .num{font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--violet),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sovereign-item .label{font-size:12px;color:var(--dim);margin-top:4px}
+
+/* Models */
+.models{padding:100px 24px;border-top:1px solid var(--border)}
+.models h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.models .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.model-list{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:800px;margin:0 auto}
+.model-tag{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;transition:all .3s}
+.model-tag:hover{border-color:var(--accent);background:rgba(218,112,214,0.1)}
+.model-tag.custom{border-color:var(--accent);color:var(--accent)}
+
+/* CTA */
+.final-cta{padding:100px 24px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(218,112,214,0.08),transparent 70%);border-radius:50%;bottom:0;left:50%;transform:translateX(-50%)}
+.final-cta h2{font-size:clamp(28px,4vw,48px);font-weight:800;margin-bottom:16px;position:relative;z-index:1}
+.final-cta .sub{color:var(--dim);font-size:16px;margin-bottom:40px;position:relative;z-index:1;max-width:500px;margin-left:auto;margin-right:auto}
+.final-cta .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);color:var(--dim);font-size:13px}
+footer a{color:var(--accent)}
+
+@media(max-width:768px){
+  .hero h1{font-size:36px}
+  .mode-grid{grid-template-columns:1fr}
+  .memory-flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lucidia</div>
+  <div class="links">
+    <a href="../">BlackRoad OS</a>
+    <a href="#modes">Three Modes</a>
+    <a href="#models">Models</a>
+    <a href="https://github.com/blackboxprogramming">GitHub</a>
+  </div>
+</nav>
+
+<!-- Hero (Self-Schema + Emotional Appeal) -->
+<section class="hero">
+<div class="hero-inner">
+  <div class="eyebrow">$437.5 Billion TAM</div>
+  <h1>The AI that <em>remembers you</em>.</h1>
+  <p class="sub">Every other AI starts from zero. Lucidia starts from everything it knows about you — your projects, your preferences, your patterns. One memory layer. Every AI model. Yours.</p>
+
+  <!-- Interactive Chat Demo (Elaboration + Experiential) -->
+  <div class="chat-demo">
+    <div class="chat-msg user">
+      <div class="avatar">you</div>
+      <div class="text">Can you refactor the auth module? Same patterns we used in the quantum project.</div>
+    </div>
+    <div class="chat-msg ai">
+      <div class="avatar">L</div>
+      <div class="text">I remember — you prefer extracting middleware into composable hooks with explicit error boundaries. I'll apply that pattern to auth/middleware.ts. Want me to also update the tests to match?
+        <span class="memory">Memory: 847 interactions • 12 projects • preference patterns loaded</span>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Say something to Lucidia..." disabled>
+      <button disabled>Send</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Say Hi to Lucidia</a>
+    <a href="#modes" class="btn btn-outline">Explore Three Modes</a>
+  </div>
+</div>
+</section>
+
+<!-- Three Modes (Central Route — Segmented Value Props) -->
+<section class="modes" id="modes">
+  <h2>One platform. Three worlds.</h2>
+  <p class="lead">Lucidia adapts to who you are — developer, executive, or explorer.</p>
+  <div class="mode-grid">
+
+    <div class="mode-card">
+      <span class="tag">Personal AI</span>
+      <h3>Companion</h3>
+      <p class="tagline">Your AI that actually knows you. Memory, personality, continuity across every conversation.</p>
+      <ul class="features">
+        <li>Persistent memory across sessions</li>
+        <li>Learns your coding style and preferences</li>
+        <li>Multi-model: Claude, GPT, Gemini, local</li>
+        <li>Sovereign — runs on your hardware</li>
+        <li>CLI + API + chat interface</li>
+      </ul>
+      <p class="tam">$150B personal AI market</p>
+    </div>
+
+    <div class="mode-card">
+      <span class="tag">Enterprise</span>
+      <h3>Orchestrator</h3>
+      <p class="tagline">1,000+ AI agents. One governed interface. Every model your org uses, unified.</p>
+      <ul class="features">
+        <li>Multi-AI orchestration layer</li>
+        <li>1,000+ agents via natural language</li>
+        <li>Compliance-mapped outputs</li>
+        <li>Team memory and knowledge graphs</li>
+        <li>RoadAuth integration for governed access</li>
+      </ul>
+      <p class="tam">$237.5B enterprise AI market</p>
+    </div>
+
+    <div class="mode-card">
+      <span class="tag">Gaming</span>
+      <h3>Living World</h3>
+      <p class="tagline">AI-driven games where characters remember, cities evolve, and every player shapes the world.</p>
+      <ul class="features">
+        <li>3 proprietary games</li>
+        <li>AI NPCs with persistent memory</li>
+        <li>Procedural world generation</li>
+        <li>Metaverse platform for creators</li>
+        <li>Cross-game identity and progression</li>
+      </ul>
+      <p class="tam">$50B AI gaming market</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Universal Memory Layer -->
+<section class="memory">
+  <h2>Memory is the moat.</h2>
+  <p class="lead">Other AIs have context windows. Lucidia has memory architecture — semantic, episodic, procedural — that persists across models, sessions, and devices.</p>
+  <div class="memory-flow">
+    <div class="flow-step"><div class="icon">💬</div><div class="label">Interaction</div><div class="desc">Any AI model</div></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><div class="icon">🧠</div><div class="label">Memory Layer</div><div class="desc">Encode + index</div></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><div class="icon">🔮</div><div class="label">Recall</div><div class="desc">Semantic search</div></div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step"><div class="icon">⚡</div><div class="label">Response</div><div class="desc">Context-enriched</div></div>
+  </div>
+</section>
+
+<!-- Sovereign Infrastructure -->
+<section class="sovereign">
+  <h2>Sovereign. Local. Yours.</h2>
+  <p class="lead">Lucidia runs on your hardware. Your models. No login. No cloud dependency. No corporate data siphon.</p>
+  <div class="sovereign-grid">
+    <div class="sovereign-item"><div class="num">108</div><div class="label">Local Models via Ollama</div></div>
+    <div class="sovereign-item"><div class="num">5</div><div class="label">Pi 5 Cluster Nodes</div></div>
+    <div class="sovereign-item"><div class="num">52</div><div class="label">TOPS (Hailo-8 AI)</div></div>
+    <div class="sovereign-item"><div class="num">0</div><div class="label">Cloud Dependencies</div></div>
+  </div>
+</section>
+
+<!-- Models -->
+<section class="models" id="models">
+  <h2>108 models. One interface.</h2>
+  <p class="lead">Run any model locally through Lucidia's Ollama bridge. Switch models mid-conversation. Compare outputs. Your choice.</p>
+  <div class="model-list">
+    <span class="model-tag custom">CECE-Conversational</span>
+    <span class="model-tag custom">CECE-Technical</span>
+    <span class="model-tag custom">CECE-Creative</span>
+    <span class="model-tag custom">CECE-Analytical</span>
+    <span class="model-tag">Llama 3.2</span>
+    <span class="model-tag">Mistral</span>
+    <span class="model-tag">CodeLlama</span>
+    <span class="model-tag">Gemma 2</span>
+    <span class="model-tag">Phi-3</span>
+    <span class="model-tag">DeepSeek Coder</span>
+    <span class="model-tag">Qwen 2.5</span>
+    <span class="model-tag">StarCoder 2</span>
+    <span class="model-tag">Vicuna</span>
+    <span class="model-tag">Neural Chat</span>
+    <span class="model-tag">Dolphin</span>
+    <span class="model-tag">+ 93 more</span>
+  </div>
+</section>
+
+<!-- CLI Preview -->
+<section class="sovereign" style="background:transparent;border-top:1px solid var(--border)">
+  <h2>Lucidia CLI — sovereign coding assistant.</h2>
+  <p class="lead">One command. Multi-endpoint fallback. Zero cloud.</p>
+  <div style="max-width:600px;margin:0 auto;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:left;font-family:'SF Mono',Monaco,monospace;font-size:13px;line-height:2">
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> chat<br>
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> explain server.ts<br>
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> review auth/middleware.ts<br>
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> fix broken-module.py<br>
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> copilot incomplete-file.rs<br>
+    <span style="color:var(--dim)">$</span> <span style="color:var(--accent)">lucidia</span> suggest api/routes.ts<br>
+    <span style="color:var(--dim)">$</span> LUCIDIA_MODEL=mistral <span style="color:var(--accent)">lucidia</span> ask "optimize this query"
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <h2>Every AI forgets you.<br>Lucidia never will.</h2>
+  <p class="sub">850 developers already building with the first AI that has real memory. The companion tier is free.</p>
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Say Hi to Lucidia</a>
+    <a href="https://github.com/blackboxprogramming/lucidia-cli" class="btn btn-outline">Lucidia CLI on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BlackRoad OS, Inc. — Alexa Amundson</p>
+  <p style="margin-top:8px"><a href="../">BlackRoad OS</a> &middot; <a href="../roadauth/">RoadAuth</a> &middot; <a href="../quantum/">Quantum</a> &middot; <a href="https://github.com/blackboxprogramming">GitHub</a></p>
+</footer>
+
+</body>
+</html>

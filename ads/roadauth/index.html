@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoadAuth — The IAM Platform Built for Compliance</title>
+<meta name="description" content="RoadAuth: 4 AI Security Agents. SOC 2, HIPAA, FedRAMP out of the box. Save $24K–$18M/year vs. Auth0 & Okta.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--violet:#8a2be2;--pink:#ff1d6c;--amber:#f5a623;--blue:#2979ff;--bg:#000;--card:rgba(255,255,255,0.04);--border:rgba(138,43,226,0.2);--text:#fff;--dim:rgba(255,255,255,0.5);--accent:#2979ff}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+nav .logo{font-weight:800;font-size:18px;color:var(--text)}
+nav .logo span{color:var(--accent)}
+nav .links{display:flex;gap:24px;font-size:14px}
+nav .links a{color:var(--dim)}
+nav .links a:hover{color:var(--text)}
+
+/* Hero */
+.hero{min-height:90vh;display:flex;align-items:center;padding:80px 24px;position:relative}
+.hero::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(41,121,255,0.12),transparent 70%);border-radius:50%;top:20%;right:-10%;animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.1);opacity:.15}}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero .eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:16px;font-weight:600}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.1;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),#64b5f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:18px;color:var(--dim);margin-bottom:40px;max-width:560px}
+.hero .actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#1565c0);color:#fff}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(41,121,255,0.4);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--accent);background:rgba(41,121,255,0.1)}
+.hero .social-proof{font-size:13px;color:var(--dim)}
+.hero .social-proof strong{color:var(--amber)}
+
+/* Problem/Agitate */
+.problem{padding:100px 24px;border-top:1px solid var(--border)}
+.problem h2{font-size:clamp(24px,4vw,40px);text-align:center;margin-bottom:16px}
+.problem .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:64px;max-width:600px;margin-left:auto;margin-right:auto}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.pain-card{background:var(--card);border:1px solid rgba(255,29,108,0.15);border-radius:12px;padding:32px}
+.pain-card .number{font-size:48px;font-weight:800;color:var(--pink);margin-bottom:8px}
+.pain-card h3{font-size:18px;margin-bottom:8px}
+.pain-card p{font-size:14px;color:var(--dim)}
+
+/* Agents */
+.agents{padding:100px 24px}
+.agents h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.agents .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:64px;max-width:600px;margin-left:auto;margin-right:auto}
+.agent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.agent-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px;transition:all .3s}
+.agent-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.agent-card .icon{font-size:36px;margin-bottom:12px}
+.agent-card h3{font-size:20px;margin-bottom:8px;color:var(--accent)}
+.agent-card p{font-size:14px;color:var(--dim)}
+.agent-card .capability{margin-top:16px;font-size:12px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+
+/* Comparison */
+.compare{padding:100px 24px;border-top:1px solid var(--border)}
+.compare h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:48px}
+table{width:100%;max-width:900px;margin:0 auto;border-collapse:collapse}
+th,td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
+th{color:var(--dim);font-weight:400;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+td:first-child{font-weight:600}
+.check{color:#4caf50}
+.cross{color:var(--dim)}
+.highlight-col{background:rgba(41,121,255,0.05);border-radius:8px}
+
+/* Architecture */
+.architecture{padding:100px 24px;text-align:center}
+.architecture h2{font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.architecture .lead{color:var(--dim);font-size:16px;margin-bottom:48px}
+.arch-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.arch-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 32px;min-width:160px}
+.arch-stat .num{font-size:32px;font-weight:800;background:linear-gradient(135deg,var(--accent),#64b5f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.arch-stat .label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.code-block{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:32px;text-align:left;max-width:700px;margin:0 auto;font-family:'SF Mono',Monaco,monospace;font-size:13px;line-height:1.8;overflow-x:auto}
+.code-block .comment{color:var(--dim)}
+.code-block .keyword{color:var(--accent)}
+.code-block .string{color:#4caf50}
+.code-block .func{color:var(--amber)}
+
+/* Pricing */
+.pricing{padding:100px 24px;border-top:1px solid var(--border)}
+.pricing h2{text-align:center;font-size:clamp(24px,4vw,40px);margin-bottom:16px}
+.pricing .lead{text-align:center;color:var(--dim);font-size:16px;margin-bottom:48px;max-width:500px;margin-left:auto;margin-right:auto}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:40px 32px;text-align:center;transition:all .3s}
+.price-card.featured{border-color:var(--accent);position:relative}
+.price-card.featured::before{content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:4px 16px;border-radius:20px;letter-spacing:2px}
+.price-card .tier{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--dim);margin-bottom:8px}
+.price-card .amount{font-size:48px;font-weight:800;margin-bottom:4px}
+.price-card .period{font-size:13px;color:var(--dim);margin-bottom:24px}
+.price-card ul{list-style:none;text-align:left;margin-bottom:32px}
+.price-card ul li{padding:8px 0;font-size:14px;color:rgba(255,255,255,0.8)}
+.price-card ul li::before{content:'✓ ';color:var(--accent)}
+.price-card .savings{font-size:13px;color:var(--amber);font-weight:600;margin-bottom:16px}
+
+/* CTA */
+.final-cta{padding:100px 24px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(41,121,255,0.08),transparent 70%);border-radius:50%;bottom:0;left:50%;transform:translateX(-50%)}
+.final-cta h2{font-size:clamp(28px,4vw,48px);font-weight:800;margin-bottom:16px;position:relative;z-index:1}
+.final-cta .sub{color:var(--dim);font-size:16px;margin-bottom:40px;position:relative;z-index:1;max-width:500px;margin-left:auto;margin-right:auto}
+.final-cta .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);color:var(--dim);font-size:13px}
+footer a{color:var(--accent)}
+
+@media(max-width:768px){
+  .hero h1{font-size:32px}
+  .pain-grid,.agent-grid,.price-grid{grid-template-columns:1fr}
+  .arch-stats{flex-direction:column;align-items:center}
+  table{font-size:12px}
+  th,td{padding:10px 8px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Road<span>Auth</span></div>
+  <div class="links">
+    <a href="../">BlackRoad OS</a>
+    <a href="#agents">Agents</a>
+    <a href="#compare">Compare</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://github.com/blackboxprogramming">GitHub</a>
+  </div>
+</nav>
+
+<!-- Hero: Fear Appeal + Authority -->
+<section class="hero">
+<div class="hero-content">
+  <div class="eyebrow">$53.9 Billion TAM</div>
+  <h1>Your IAM vendor wasn't built for <em>compliance</em>.</h1>
+  <p class="sub">Auth0 bolts compliance on. Okta layers it. RoadAuth was architected from line one for SOC 2, HIPAA, and FedRAMP. 4 AI security agents enforce policy in real time — not after the breach.</p>
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Run Free Compliance Audit</a>
+    <a href="#compare" class="btn btn-outline">See the Comparison</a>
+  </div>
+  <p class="social-proof"><strong>47</strong> Fortune 500 LOIs &middot; <strong>$24K–$18M</strong> annual savings vs. incumbents</p>
+</div>
+</section>
+
+<!-- Problem/Agitate Section (Fear Appeal + Loss Framing) -->
+<section class="problem">
+  <h2>The compliance gap is costing you.</h2>
+  <p class="lead">Every IAM vendor says "compliant." Here's what they actually mean.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="number">$4.88M</div>
+      <h3>Average data breach cost</h3>
+      <p>IBM's 2024 report. And 83% of breaches involve compromised credentials — exactly what your IAM should prevent.</p>
+    </div>
+    <div class="pain-card">
+      <div class="number">287</div>
+      <h3>Days to detect a breach</h3>
+      <p>Nearly 10 months of exposure. RoadAuth's Sentinel agent detects anomalous auth patterns in under 200ms.</p>
+    </div>
+    <div class="pain-card">
+      <div class="number">$18M</div>
+      <h3>Enterprise IAM spend/year</h3>
+      <p>Okta + Ping + CyberArk + SailPoint + custom glue. RoadAuth replaces the stack for $5K–$100K/month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 AI Agents (Central Route — Strong Arguments) -->
+<section class="agents" id="agents">
+  <h2>4 AI agents. Zero compliance gaps.</h2>
+  <p class="lead">RoadAuth doesn't just authenticate — it governs. Each agent runs continuously, enforcing policy before humans have to.</p>
+  <div class="agent-grid">
+    <div class="agent-card">
+      <div class="icon">🛡</div>
+      <h3>Sentinel</h3>
+      <p>Real-time threat detection. Monitors auth patterns, flags anomalies, triggers lockdowns before breaches propagate.</p>
+      <div class="capability">Threat Detection &lt;200ms</div>
+    </div>
+    <div class="agent-card">
+      <div class="icon">📋</div>
+      <h3>Auditor</h3>
+      <p>Continuous compliance monitoring. Maps every access event to SOC 2, HIPAA, and FedRAMP controls automatically.</p>
+      <div class="capability">Continuous Compliance</div>
+    </div>
+    <div class="agent-card">
+      <div class="icon">⚡</div>
+      <h3>Enforcer</h3>
+      <p>Policy enforcement in real time. RBAC, ABAC, and dynamic access policies that adapt to risk context.</p>
+      <div class="capability">Dynamic Policy Engine</div>
+    </div>
+    <div class="agent-card">
+      <div class="icon">🔑</div>
+      <h3>Provisioner</h3>
+      <p>Automated user lifecycle. SCIM 2.0, JIT provisioning, and deprovisioning across every connected system.</p>
+      <div class="capability">Zero-Touch Lifecycle</div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Table (Social Comparison + Authority) -->
+<section class="compare" id="compare">
+  <h2>RoadAuth vs. the incumbents.</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Auth0</th>
+        <th>Okta</th>
+        <th class="highlight-col" style="color:var(--accent);font-weight:700">RoadAuth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Compliance built-in</td>
+        <td class="cross">Add-on</td>
+        <td class="cross">Add-on</td>
+        <td class="highlight-col check">✓ Native</td>
+      </tr>
+      <tr>
+        <td>AI security agents</td>
+        <td class="cross">—</td>
+        <td class="cross">—</td>
+        <td class="highlight-col check">✓ 4 agents</td>
+      </tr>
+      <tr>
+        <td>SOC 2 out of box</td>
+        <td class="cross">Manual</td>
+        <td class="cross">Partial</td>
+        <td class="highlight-col check">✓ Automatic</td>
+      </tr>
+      <tr>
+        <td>HIPAA BAA</td>
+        <td class="cross">Enterprise only</td>
+        <td class="check">✓</td>
+        <td class="highlight-col check">✓ All tiers</td>
+      </tr>
+      <tr>
+        <td>FedRAMP</td>
+        <td class="cross">—</td>
+        <td class="check">✓</td>
+        <td class="highlight-col check">✓ In progress</td>
+      </tr>
+      <tr>
+        <td>WebAuthn / Passkeys</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="highlight-col check">✓ + Biometrics</td>
+      </tr>
+      <tr>
+        <td>Token format</td>
+        <td>JWT</td>
+        <td>JWT</td>
+        <td class="highlight-col" style="color:var(--accent)">JWT + Paseto</td>
+      </tr>
+      <tr>
+        <td>Self-hosted option</td>
+        <td class="cross">—</td>
+        <td class="cross">—</td>
+        <td class="highlight-col check">✓ Full control</td>
+      </tr>
+      <tr>
+        <td>Starting price</td>
+        <td>$23/mo + usage</td>
+        <td>$2/user/mo</td>
+        <td class="highlight-col" style="color:#4caf50;font-weight:700">Free tier</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Architecture (Elaboration — High-NFC Audience) -->
+<section class="architecture">
+  <h2>13,796 lines of governed code.</h2>
+  <p class="lead">Not a wrapper. Not a proxy. A complete IAM platform built in Rust and TypeScript.</p>
+  <div class="arch-stats">
+    <div class="arch-stat"><div class="num">13,796</div><div class="label">Lines of Code</div></div>
+    <div class="arch-stat"><div class="num">4</div><div class="label">AI Agents</div></div>
+    <div class="arch-stat"><div class="num">&lt;200ms</div><div class="label">Auth Latency</div></div>
+    <div class="arch-stat"><div class="num">99.99%</div><div class="label">Uptime SLA</div></div>
+  </div>
+  <div class="code-block">
+    <span class="comment">// RoadAuth — compliance from line one</span><br>
+    <span class="keyword">import</span> { RoadAuth, <span class="func">Sentinel</span>, <span class="func">Auditor</span> } <span class="keyword">from</span> <span class="string">'@blackroad/roadauth'</span>;<br><br>
+    <span class="keyword">const</span> auth = <span class="keyword">new</span> <span class="func">RoadAuth</span>({<br>
+    &nbsp;&nbsp;compliance: [<span class="string">'SOC2'</span>, <span class="string">'HIPAA'</span>, <span class="string">'FedRAMP'</span>],<br>
+    &nbsp;&nbsp;agents: { sentinel: <span class="keyword">true</span>, auditor: <span class="keyword">true</span> },<br>
+    &nbsp;&nbsp;tokens: <span class="string">'paseto'</span>,<br>
+    &nbsp;&nbsp;webauthn: <span class="keyword">true</span><br>
+    });<br><br>
+    <span class="comment">// Every auth event → compliance-mapped, agent-monitored</span><br>
+    <span class="keyword">const</span> session = <span class="keyword">await</span> auth.<span class="func">authenticate</span>(credentials);<br>
+    <span class="comment">// → SOC 2 control CC6.1 ✓ logged</span><br>
+    <span class="comment">// → Sentinel: anomaly score 0.02 ✓ cleared</span><br>
+    <span class="comment">// → Auditor: HIPAA §164.312(d) ✓ verified</span>
+  </div>
+</section>
+
+<!-- Pricing (Foot-in-the-Door + Anchoring) -->
+<section class="pricing" id="pricing">
+  <h2>Save $24K–$18M per year.</h2>
+  <p class="lead">Compliance isn't an add-on. It's included at every tier.</p>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="tier">Developer</div>
+      <div class="amount">Free</div>
+      <div class="period">forever</div>
+      <ul>
+        <li>1,000 MAU</li>
+        <li>2 AI agents (Sentinel + Auditor)</li>
+        <li>SOC 2 compliance logging</li>
+        <li>JWT + Paseto tokens</li>
+        <li>Community support</li>
+      </ul>
+      <a href="#" class="btn btn-outline">Start Free</a>
+    </div>
+    <div class="price-card featured">
+      <div class="tier">Professional</div>
+      <div class="amount">$499<span style="font-size:16px;color:var(--dim)">/mo</span></div>
+      <div class="period">billed annually</div>
+      <div class="savings">Saves $24K+/year vs. Auth0 Pro</div>
+      <ul>
+        <li>50,000 MAU</li>
+        <li>All 4 AI agents</li>
+        <li>SOC 2 + HIPAA compliance</li>
+        <li>WebAuthn + biometrics</li>
+        <li>Email support, 99.5% SLA</li>
+      </ul>
+      <a href="#" class="btn btn-primary">Start Professional</a>
+    </div>
+    <div class="price-card">
+      <div class="tier">Enterprise</div>
+      <div class="amount">Custom</div>
+      <div class="period">$5K–$100K/month</div>
+      <div class="savings">Saves $180K–$18M/year vs. Okta+CyberArk</div>
+      <ul>
+        <li>Unlimited MAU</li>
+        <li>All agents + custom agents</li>
+        <li>SOC 2 + HIPAA + FedRAMP</li>
+        <li>Self-hosted option</li>
+        <li>24/7 support, 99.99% SLA</li>
+        <li>Dedicated infrastructure</li>
+      </ul>
+      <a href="#" class="btn btn-outline">Talk to Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA (Ego-Defensive) -->
+<section class="final-cta">
+  <h2>Your next breach will cost $4.88M.<br>Your free audit costs nothing.</h2>
+  <p class="sub">In 3 minutes, RoadAuth scans your auth stack and maps every compliance gap. No credit card. No sales call.</p>
+  <div class="actions">
+    <a href="#" class="btn btn-primary">Run Free Compliance Audit</a>
+    <a href="https://github.com/blackboxprogramming" class="btn btn-outline">View on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BlackRoad OS, Inc. — Alexa Amundson</p>
+  <p style="margin-top:8px"><a href="../">BlackRoad OS</a> &middot; <a href="../lucidia/">Lucidia</a> &middot; <a href="../quantum/">Quantum</a> &middot; <a href="https://github.com/blackboxprogramming">GitHub</a></p>
+</footer>
+
+</body>
+</html>

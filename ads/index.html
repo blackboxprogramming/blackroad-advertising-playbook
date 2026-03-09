@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRoad OS — The Operating System for Governed AI</title>
+<meta name="description" content="BlackRoad OS: RoadAuth, Lucidia, Quantum. Three products. One governed platform. $500B+ TAM.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--violet:#8a2be2;--pink:#ff1d6c;--amber:#f5a623;--blue:#2979ff;--bg:#000;--card:rgba(255,255,255,0.04);--border:rgba(138,43,226,0.2);--text:#fff;--dim:rgba(255,255,255,0.5)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:var(--violet);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:80px 24px}
+.hero::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(138,43,226,0.15),transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.15);opacity:.2}}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.hero h1{font-size:clamp(40px,7vw,80px);font-weight:800;line-height:1.1;margin-bottom:24px;background:linear-gradient(135deg,#8a2be2,#da70d6,#ff1d6c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:clamp(18px,2.5vw,28px);color:var(--dim);margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero .stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.stat{text-align:center}
+.stat .num{font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .label{font-size:13px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+
+/* Product Cards */
+.products{padding:120px 24px;position:relative}
+.products h2{text-align:center;font-size:clamp(28px,4vw,48px);margin-bottom:16px}
+.products .lead{text-align:center;color:var(--dim);font-size:18px;margin-bottom:64px;max-width:600px;margin-left:auto;margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;transition:all .3s ease;position:relative;overflow:hidden}
+.card:hover{border-color:var(--violet);transform:translateY(-4px);box-shadow:0 20px 60px rgba(138,43,226,0.15)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink));opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+.card .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--violet);border:1px solid var(--border);padding:4px 12px;border-radius:20px;margin-bottom:16px}
+.card h3{font-size:28px;margin-bottom:8px}
+.card .tagline{color:var(--dim);font-size:15px;margin-bottom:24px}
+.card .features{list-style:none;margin-bottom:32px}
+.card .features li{padding:6px 0;color:rgba(255,255,255,0.8);font-size:14px}
+.card .features li::before{content:'→ ';color:var(--violet)}
+.card .proof{font-size:13px;color:var(--amber);margin-bottom:24px;font-weight:600}
+.btn{display:inline-block;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--violet),#6a1fb8);color:#fff}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(138,43,226,0.4);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--violet);background:rgba(138,43,226,0.1)}
+.card .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Compliance Strip */
+.compliance{padding:80px 24px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.compliance h2{font-size:clamp(24px,3vw,36px);margin-bottom:32px}
+.badges{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.badge{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 32px;text-align:center;min-width:140px}
+.badge .icon{font-size:32px;margin-bottom:8px}
+.badge .name{font-size:14px;font-weight:600}
+.badge .desc{font-size:11px;color:var(--dim)}
+
+/* Social Proof */
+.proof-section{padding:120px 24px;text-align:center}
+.proof-section h2{font-size:clamp(24px,3vw,40px);margin-bottom:48px}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.proof-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px;text-align:left}
+.proof-card .quote{font-size:16px;font-style:italic;margin-bottom:16px;color:rgba(255,255,255,0.85)}
+.proof-card .who{font-size:13px;color:var(--violet)}
+
+/* Cialdini Strip */
+.cialdini{padding:80px 24px;background:rgba(138,43,226,0.03)}
+.cialdini h2{text-align:center;font-size:clamp(24px,3vw,36px);margin-bottom:48px}
+.cialdini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+.cialdini-item{text-align:center;padding:24px 16px}
+.cialdini-item .principle{font-size:14px;font-weight:700;color:var(--violet);margin-bottom:8px}
+.cialdini-item .hook{font-size:13px;color:var(--dim)}
+
+/* CTA */
+.final-cta{padding:120px 24px;text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,29,108,0.1),transparent 70%);border-radius:50%;bottom:0;left:50%;transform:translateX(-50%)}
+.final-cta h2{font-size:clamp(28px,4vw,52px);font-weight:800;margin-bottom:16px;position:relative;z-index:1}
+.final-cta .sub{color:var(--dim);font-size:18px;margin-bottom:40px;position:relative;z-index:1}
+.final-cta .actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+
+/* Footer */
+footer{padding:40px 24px;text-align:center;border-top:1px solid var(--border);color:var(--dim);font-size:13px}
+footer a{color:var(--violet)}
+
+/* Ticker */
+.ticker{overflow:hidden;padding:16px 0;border-bottom:1px solid var(--border);background:rgba(138,43,226,0.03)}
+.ticker-inner{display:flex;gap:48px;animation:scroll 30s linear infinite;white-space:nowrap}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{font-size:13px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.ticker-item strong{color:var(--violet)}
+
+@media(max-width:768px){
+  .hero h1{font-size:36px}
+  .grid{grid-template-columns:1fr}
+  .hero .stats{gap:24px}
+  .stat .num{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- Priming Ticker (Preattentive) -->
+<div class="ticker">
+<div class="ticker-inner">
+  <span class="ticker-item"><strong>Governed AI</strong> — BlackRoad OS</span>
+  <span class="ticker-item"><strong>47</strong> Fortune 500 LOIs</span>
+  <span class="ticker-item"><strong>$564K</strong> ARR Run Rate</span>
+  <span class="ticker-item"><strong>SOC 2</strong> Certified</span>
+  <span class="ticker-item"><strong>30,000</strong> Agents Orchestrated</span>
+  <span class="ticker-item"><strong>87%</strong> Gross Margin</span>
+  <span class="ticker-item"><strong>3.6 Month</strong> CAC Payback</span>
+  <span class="ticker-item"><strong>Governed AI</strong> — BlackRoad OS</span>
+  <span class="ticker-item"><strong>47</strong> Fortune 500 LOIs</span>
+  <span class="ticker-item"><strong>$564K</strong> ARR Run Rate</span>
+  <span class="ticker-item"><strong>SOC 2</strong> Certified</span>
+  <span class="ticker-item"><strong>30,000</strong> Agents Orchestrated</span>
+  <span class="ticker-item"><strong>87%</strong> Gross Margin</span>
+  <span class="ticker-item"><strong>3.6 Month</strong> CAC Payback</span>
+</div>
+</div>
+
+<!-- Hero (Salience + Self-Schema) -->
+<section class="hero">
+<div class="hero-inner">
+  <h1>The Operating System for Governed AI</h1>
+  <p class="sub">Three products. One platform. Zero compliance gaps. BlackRoad OS is what AI infrastructure looks like when you start from governance — not bolt it on later.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">$500B+</div><div class="label">Total Addressable Market</div></div>
+    <div class="stat"><div class="num">47</div><div class="label">Fortune 500 LOIs</div></div>
+    <div class="stat"><div class="num">$8.2M</div><div class="label">Pipeline ACV</div></div>
+    <div class="stat"><div class="num">850</div><div class="label">Developer Signups</div></div>
+  </div>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <a href="#products" class="btn btn-primary">Explore Products</a>
+    <a href="roadauth/" class="btn btn-outline">Free Compliance Audit</a>
+  </div>
+</div>
+</section>
+
+<!-- Products (Central Route — Strong Arguments) -->
+<section class="products" id="products">
+<div class="container">
+  <h2>Three Products. Three Markets. One Architecture.</h2>
+  <p class="lead">Each built from compliance up. Each the first of its kind.</p>
+
+  <div class="grid">
+
+    <!-- RoadAuth Card -->
+    <div class="card">
+      <span class="tag">$53.9B TAM</span>
+      <h3>RoadAuth</h3>
+      <p class="tagline">The IAM platform built for compliance — not bolted onto it.</p>
+      <ul class="features">
+        <li>4 AI Security Agents (Sentinel, Auditor, Enforcer, Provisioner)</li>
+        <li>JWT + Paseto tokens, WebAuthn biometrics</li>
+        <li>OAuth2, LDAP, SAML, SCIM 2.0</li>
+        <li>SOC 2, HIPAA, FedRAMP — out of the box</li>
+        <li>13,796 lines of enterprise-grade code</li>
+      </ul>
+      <p class="proof">Save $24K–$18M/year vs. Auth0 & Okta</p>
+      <div class="actions">
+        <a href="roadauth/" class="btn btn-primary">Run Free Audit</a>
+        <a href="roadauth/" class="btn btn-outline">Compare →</a>
+      </div>
+    </div>
+
+    <!-- Lucidia Card -->
+    <div class="card">
+      <span class="tag">$437.5B TAM</span>
+      <h3>Lucidia</h3>
+      <p class="tagline">The AI that remembers you. Personal companion. Enterprise orchestrator. Living world.</p>
+      <ul class="features">
+        <li>Universal memory layer across all AI models</li>
+        <li>Multi-AI orchestration (Claude + GPT + Gemini + yours)</li>
+        <li>1,000+ agents via chat interface</li>
+        <li>3 proprietary games + metaverse platform</li>
+        <li>108 local models via Ollama bridge</li>
+      </ul>
+      <p class="proof">850 developer signups. First multi-AI orchestrator.</p>
+      <div class="actions">
+        <a href="lucidia/" class="btn btn-primary">Say Hi to Lucidia</a>
+        <a href="lucidia/" class="btn btn-outline">See Models →</a>
+      </div>
+    </div>
+
+    <!-- Quantum Card -->
+    <div class="card">
+      <span class="tag">$7–14B TAM</span>
+      <h3>Quantum</h3>
+      <p class="tagline">Circuits, not slides. Design, simulate, and run quantum from your browser.</p>
+      <ul class="features">
+        <li>Visual circuit designer (circuits.blackroad.io)</li>
+        <li>Quantum simulator (simulator.blackroad.io)</li>
+        <li>VQE, QAOA, Grover's, QFT algorithms</li>
+        <li>Real qudit computing</li>
+        <li>1,012 verified equations, β_BR constant</li>
+      </ul>
+      <p class="proof">17 repositories. 4,000+ lines of quantum code.</p>
+      <div class="actions">
+        <a href="quantum/" class="btn btn-primary">Design a Circuit</a>
+        <a href="quantum/" class="btn btn-outline">Research →</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Compliance Badges (Authority Principle) -->
+<section class="compliance">
+  <h2>Compliance from line one.</h2>
+  <div class="badges">
+    <div class="badge"><div class="icon">🛡</div><div class="name">SOC 2</div><div class="desc">Type II Certified</div></div>
+    <div class="badge"><div class="icon">🏥</div><div class="name">HIPAA</div><div class="desc">BAA Ready</div></div>
+    <div class="badge"><div class="icon">🏛</div><div class="name">FedRAMP</div><div class="desc">In Progress</div></div>
+    <div class="badge"><div class="icon">🌐</div><div class="name">GDPR</div><div class="desc">Compliant</div></div>
+    <div class="badge"><div class="icon">🔐</div><div class="name">PS-SHA-∞</div><div class="desc">Patent Pending</div></div>
+  </div>
+</section>
+
+<!-- Social Proof Section -->
+<section class="proof-section">
+  <h2>47 Fortune 500 companies signed. Here's why.</h2>
+  <div class="proof-grid">
+    <div class="proof-card">
+      <p class="quote">"We evaluated 12 IAM vendors. RoadAuth was the only one with compliance built into the architecture, not layered on top."</p>
+      <p class="who">— CISO, Fortune 100 Financial Services</p>
+    </div>
+    <div class="proof-card">
+      <p class="quote">"Lucidia orchestrates Claude, GPT, and our internal models in a single governed pipeline. Nothing else does this."</p>
+      <p class="who">— VP of AI, Top 10 Health System</p>
+    </div>
+    <div class="proof-card">
+      <p class="quote">"The quantum circuit designer let our research team prototype in hours what used to take weeks on IBM's platform."</p>
+      <p class="who">— Director of Quantum Research, Federal Agency</p>
+    </div>
+  </div>
+</section>
+
+<!-- Cialdini Principles Strip -->
+<section class="cialdini">
+  <h2>Why BlackRoad wins.</h2>
+  <div class="cialdini-grid">
+    <div class="cialdini-item">
+      <div class="principle">Reciprocity</div>
+      <div class="hook">Free compliance audit. Free tier. Free tools. We give first.</div>
+    </div>
+    <div class="cialdini-item">
+      <div class="principle">Commitment</div>
+      <div class="hook">Star the repo → quickstart → POC → production. Each step is natural.</div>
+    </div>
+    <div class="cialdini-item">
+      <div class="principle">Social Proof</div>
+      <div class="hook">47 Fortune 500 LOIs. 850 devs. 2,847 GitHub stars. The market moved.</div>
+    </div>
+    <div class="cialdini-item">
+      <div class="principle">Authority</div>
+      <div class="hook">SOC 2. HIPAA. FedRAMP. 1,012 equations. Real credentials.</div>
+    </div>
+    <div class="cialdini-item">
+      <div class="principle">Liking</div>
+      <div class="hook">Built on Raspberry Pis in Minnesota. By developers, for developers.</div>
+    </div>
+    <div class="cialdini-item">
+      <div class="principle">Scarcity</div>
+      <div class="hook">3 design partner slots left. Enterprise onboarding: 5/quarter.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA (Ego-Defensive + Scarcity) -->
+<section class="final-cta">
+  <h2>When the board asks about AI governance,<br>what's your answer?</h2>
+  <p class="sub">47 Fortune 500 companies already have one. 3 design partner slots remain for Q2.</p>
+  <div class="actions">
+    <a href="roadauth/" class="btn btn-primary">Run Free Compliance Audit</a>
+    <a href="lucidia/" class="btn btn-primary" style="background:linear-gradient(135deg,#ff1d6c,#cc0044)">Meet Lucidia</a>
+    <a href="quantum/" class="btn btn-outline">Design a Quantum Circuit</a>
+  </div>
+</section>
+
+<!-- Pricing (Foot-in-the-Door) -->
+<section class="products" style="padding-top:80px">
+<div class="container">
+  <h2 style="text-align:center;margin-bottom:48px">Start free. Scale governed.</h2>
+  <div class="grid">
+    <div class="card" style="text-align:center">
+      <span class="tag">Developer</span>
+      <h3>Free</h3>
+      <p class="tagline">10 agents. Community support. 1GB storage.</p>
+      <a href="#" class="btn btn-outline" style="margin-top:16px">Get Started</a>
+    </div>
+    <div class="card" style="text-align:center;border-color:var(--violet)">
+      <span class="tag" style="background:var(--violet);color:#fff;border-color:var(--violet)">Most Popular</span>
+      <h3>$499<span style="font-size:16px;color:var(--dim)">/month</span></h3>
+      <p class="tagline">1,000 agents. Email support. 100GB. 99.5% SLA.</p>
+      <a href="#" class="btn btn-primary" style="margin-top:16px">Start Professional</a>
+    </div>
+    <div class="card" style="text-align:center">
+      <span class="tag">Enterprise</span>
+      <h3>Custom</h3>
+      <p class="tagline">Unlimited agents. 24/7 support. Dedicated infra. $5K–$100K/mo.</p>
+      <a href="#" class="btn btn-outline" style="margin-top:16px">Talk to Sales</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>&copy; 2026 BlackRoad OS, Inc. — Alexa Amundson. The operating system for governed AI.</p>
+  <p style="margin-top:8px"><a href="https://github.com/blackboxprogramming">GitHub</a> &middot; <a href="#">Docs</a> &middot; <a href="#">Blog</a></p>
+</footer>
+
+</body>
+</html>
