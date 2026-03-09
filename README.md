@@ -6,6 +6,7 @@ Psychology-driven advertising strategy built from JOUR 4251 — Psychology of Ad
 
 - [`paper/blackroad-advertising-playbook.md`](paper/blackroad-advertising-playbook.md) — Full academic paper: psychology-driven framework
 - [`paper/blackroad-advertising-approach.md`](paper/blackroad-advertising-approach.md) — How BlackRoad approaches the framework in practice
+- [`paper/blackroad-salience-in-practice.md`](paper/blackroad-salience-in-practice.md) — BlackRoad salient: seeing the framework in practice
 - [`playbook.md`](playbook.md) — Quick-reference playbook
 
 ## About
