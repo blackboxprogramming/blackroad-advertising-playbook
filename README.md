@@ -1,5 +1,11 @@
 # BlackRoad Advertising Playbook
 
+[![Marketing](https://img.shields.io/badge/marketing-psychology-FF6B2B.svg)](https://blackroad.io)
+[![HTML](https://img.shields.io/badge/HTML-landing_pages-E34F26.svg)](https://blackroad.io)
+[![Research](https://img.shields.io/badge/research-JOUR_4251-3776AB.svg)](https://blackroad.io)
+
+
+
 Psychology-driven advertising strategy built from JOUR 4251 — Psychology of Advertising (University of Minnesota).
 
 ## Contents
